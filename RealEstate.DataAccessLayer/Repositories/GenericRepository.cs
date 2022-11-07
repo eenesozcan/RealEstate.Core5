@@ -18,6 +18,11 @@ namespace RealEstate.DataAccessLayer.Repositories
         
         }
 
+        public T GetByID(int id)
+        {
+            return context.Set<T>().Find(id);
+        }
+
         public List<T> GetList()
         {
             return context.Set<T>().ToList();

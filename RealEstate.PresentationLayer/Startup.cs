@@ -27,8 +27,14 @@ namespace RealEstate.PresentationLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
+
+            services.AddScoped<IMemberService, MemberManager>();
+            services.AddScoped<IMemberDal, EfMemberDal>();
+
+
             services.AddControllersWithViews();
         }
 

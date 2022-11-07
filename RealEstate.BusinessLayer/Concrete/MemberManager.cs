@@ -44,6 +44,9 @@ namespace RealEstate.BusinessLayer.Concrete
 
         }
 
-
+        public Member TGetByID(int id)
+        {
+            return _memberDal.GetByID(id);
+        }
     }
 }

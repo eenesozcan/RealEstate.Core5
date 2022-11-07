@@ -14,5 +14,6 @@ namespace RealEstate.BusinessLayer.Abstract
         void TUpdate(T t);
         void TDelete(T t);
         List<T> TGetList();
+        T TGetByID(int id);
     }
 }
