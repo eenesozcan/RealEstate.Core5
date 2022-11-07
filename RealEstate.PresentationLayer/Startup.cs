@@ -34,6 +34,9 @@ namespace RealEstate.PresentationLayer
             services.AddScoped<IMemberService, MemberManager>();
             services.AddScoped<IMemberDal, EfMemberDal>();
 
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IProductDal, EfProductDal>();
+
 
             services.AddControllersWithViews();
         }
