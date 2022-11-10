@@ -7,7 +7,9 @@ using Microsoft.Extensions.Hosting;
 using RealEstate.BusinessLayer.Abstract;
 using RealEstate.BusinessLayer.Concrete;
 using RealEstate.DataAccessLayer.Abstract;
+using RealEstate.DataAccessLayer.Concrete;
 using RealEstate.DataAccessLayer.EntityFramework;
+using RealEstate.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,10 @@ namespace RealEstate.PresentationLayer
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IProductDal, EfProductDal>();
+
+
+            services.AddDbContext<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
 
 
             services.AddControllersWithViews();

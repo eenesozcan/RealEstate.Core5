@@ -61,11 +61,11 @@ namespace RealEstate.PresentationLayer.Controllers
                                                Text = x.CategoryName,
                                                Value = x.CategoryID.ToString()
                                            }).ToList();
-            ViewBag.v = values1;
+            ViewBag.v = values;
                 
-            var values = _productService.TGetByID(id);
+            var values2 = _productService.TGetByID(id);
 
-            return View(values);
+            return View(values2);
         }
 
 

@@ -10,8 +10,8 @@ using RealEstate.DataAccessLayer.Concrete;
 namespace RealEstate.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221105145914_mig_create_product")]
-    partial class mig_create_product
+    [Migration("20221109164818_mig2")]
+    partial class mig2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
