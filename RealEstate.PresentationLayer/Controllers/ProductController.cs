@@ -68,6 +68,12 @@ namespace RealEstate.PresentationLayer.Controllers
             return View(values2);
         }
 
+        [HttpPost]
+        public IActionResult UpdateProduct(Product p)
+        {
+            _productService.TUpdate(p);
+            return RedirectToAction("Index");
+        }
 
     }
 }

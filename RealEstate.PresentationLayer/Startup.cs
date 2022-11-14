@@ -10,6 +10,7 @@ using RealEstate.DataAccessLayer.Abstract;
 using RealEstate.DataAccessLayer.Concrete;
 using RealEstate.DataAccessLayer.EntityFramework;
 using RealEstate.EntityLayer.Concrete;
+using RealEstate.PresentationLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace RealEstate.PresentationLayer
 
 
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
 
             services.AddControllersWithViews();
