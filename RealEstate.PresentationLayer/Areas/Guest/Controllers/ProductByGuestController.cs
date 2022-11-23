@@ -48,5 +48,46 @@ namespace RealEstate.PresentationLayer.Areas.Guest.Controllers
             _productService.TInsert(p);
             return RedirectToAction("Index", "Product");
         }
+
+        public async Task<IActionResult> ProductListByGuest()
+        {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            var productValues = _productService.TGetProductByGuest(values.Id);
+            return View(productValues);
+        }
+
+
+
+        public IActionResult DeleteProductByGuest(int id)
+        {
+            var values = _productService.TGetByID(id);
+            _productService.TDelete(values);
+            return RedirectToAction("ProductListByGuest");
+        }
+
+
+        [HttpGet]
+        public IActionResult UpdateProductByGuest(int id)
+        {
+            List<SelectListItem> values = (from x in _categoryService.TGetList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CategoryName,
+                                               Value = x.CategoryID.ToString()
+                                           }).ToList();
+            ViewBag.v = values;
+
+
+
+            var values2 = _productService.TGetByID(id);
+            return View(values2);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProductByGuest(Product p)
+        {
+            _productService.TUpdate(p);
+            return RedirectToAction("ProductListByGuest");
+        }
     }
 }
