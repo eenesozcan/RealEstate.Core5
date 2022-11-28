@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RealEstate.BusinessLayer.Abstract;
 using RealEstate.BusinessLayer.Concrete;
+using RealEstate.BusinessLayer.DIContainer;
 using RealEstate.DataAccessLayer.Abstract;
 using RealEstate.DataAccessLayer.Concrete;
 using RealEstate.DataAccessLayer.EntityFramework;
@@ -31,14 +32,7 @@ namespace RealEstate.PresentationLayer
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<ICategoryService, CategoryManager>();
-            services.AddScoped<ICategoryDal, EfCategoryDal>();
-
-            services.AddScoped<IMemberService, MemberManager>();
-            services.AddScoped<IMemberDal, EfMemberDal>();
-
-            services.AddScoped<IProductService, ProductManager>();
-            services.AddScoped<IProductDal, EfProductDal>();
+            services.ContainerDependencies();
 
 
             services.AddDbContext<Context>();

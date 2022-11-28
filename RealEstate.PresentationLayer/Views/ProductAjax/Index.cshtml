@@ -31,8 +31,37 @@
     <input type="text" id="txtDetails" class="form-control" placeholder="İlan Açıklamasını Giriniz" />
     <br />
 </div>
+<br />
 
 
+<div class="form-group">
+    <input type="text" id="txtid" placeholder="Aranacak ID Değerini Giriniz" class="form-control" />
+</div>
+
+<br />
+
+<div id="getlistbyid">
+</div>
+
+<br />
+
+
+
+<div>
+    <input class="form-control" type="text" id="txtdeletedid" placeholder="Silinecek ID Değerini Giriniz" />
+</div>
+
+<br />
+
+
+<div>
+    <input type="text" id="txtupdatedid" class="form-control" placeholder="Güncellenecek ID Değeri" />
+    <br />
+    <input type="text" id="txtupdatedprice" class="form-control" placeholder="Güncellenecek Fiyat Değeri" />
+    <br />
+    <input type="text" id="txtupdatedtitle" class="form-control" placeholder="Güncellenecek Başlık Değeri" />
+    <br />
+</div>
 
 <script>
     $("#btngetlist").click(function () {
@@ -54,7 +83,6 @@
         });
     });
 
-
     $("#btnaddproduct").click(function () {
         let values = {
             Title: $("#txtTitle").val(),
@@ -74,5 +102,67 @@
             }
         });
     });
+
+    $("#btngetproduct").click(x => {
+        let id = $("#txtid").val();
+
+        $.ajax({
+            contentType: "application/json",
+            dataType: "json",
+            type: "get",
+            url: "/ProductAjax/GetByID/",
+            data: { ProductID: id },
+            success: function (funk3) {
+                let result = jQuery.parseJSON(funk3);
+                console.log(result);
+
+let tablehtml2 = `<table class=table table-bordered><tr><th>İlan ID</th><th>Başlık</th><th>Fiyat</th></tr><tr><td>${result.ProductID}</td><td>${result.Title}</td><td>${result.Price}</td></tr></table>`;
+
+
+
+               $("#getlistbyid").html(tablehtml2);
+
+
+               $("#getlistbyid").fadeIn(400);
+                $("#prpductadd").hide();
+                
+            }
+        });
+    });
+
+    $("#btnproductdelete").click(x => {
+        let id = $("#txtdeletedid").val();
+        $.ajax({
+            url: "/ProductAjax/DeleteProduct/" + id,
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (funk4) {
+                alert("İlan başarılı bir şekilde silindi");
+            }
+        });
+    });
+
+    $("#btnupdateproduct").click(function () {
+        let values = {
+            ProductID: $("#txtupdatedid").val(),
+            Title: $("#txtupdatedtitle").val(),
+            Price: $("#txtupdatedprice").val()
+        };
+
+
+
+        $.ajax({
+            type: "get",
+            url: "/ProductAjax/UpdateProduct/",
+            data: values,
+            success: function (funk5) {
+                alert("Güncelleme başarılı bir şekilde yapıldı");
+            }
+        });
+    });
+
+
+
 
 </script>
