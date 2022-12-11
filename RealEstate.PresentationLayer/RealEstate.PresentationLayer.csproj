@@ -24,11 +24,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MimeKit" Version="3.4.2" />
+    <PackageReference Include="X.PagedList" Version="8.4.3" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RealEstate.BusinessLayer\RealEstate.BusinessLayer.csproj" />
     <ProjectReference Include="..\RealEstate.DataAccessLayer\RealEstate.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\RealEstate.DTOLayer\RealEstate.DTOLayer.csproj" />
     <ProjectReference Include="..\RealEstate.EntityLayer\RealEstate.EntityLayer.csproj" />
   </ItemGroup>
 
@@ -36,7 +39,7 @@
     <Folder Include="Areas\Default\Data\" />
     <Folder Include="Areas\Default\Models\" />
     <Folder Include="Areas\Guest\Data\" />
-    <Folder Include="Views\Shared\Components\_CommentListByAdvert\" />
+    <Folder Include="ViewComponents\Contact\" />
     <Folder Include="wwwroot\Image\" />
     <Folder Include="wwwroot\pdfreport\" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RealEstate.BusinessLayer.Abstract;
 using RealEstate.EntityLayer.Concrete;
@@ -12,10 +13,13 @@ namespace RealEstate.PresentationLayer.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-        public ProductController(IProductService productService, ICategoryService categoryService)
+        private readonly UserManager <AppUser> _userManager;
+
+        public ProductController(IProductService productService, ICategoryService categoryService, UserManager<AppUser> userManager)
         {
             _productService = productService;
             _categoryService = categoryService;
+            _userManager = userManager;
         }
 
         public IActionResult Index()

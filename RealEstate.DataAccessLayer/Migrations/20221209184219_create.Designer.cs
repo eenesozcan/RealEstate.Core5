@@ -10,8 +10,8 @@ using RealEstate.DataAccessLayer.Concrete;
 namespace RealEstate.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221118182412_creat_relation_appuser_product")]
-    partial class creat_relation_appuser_product
+    [Migration("20221209184219_create")]
+    partial class create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -261,6 +261,27 @@ namespace RealEstate.DataAccessLayer.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("RealEstate.EntityLayer.Concrete.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NameSurname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CommentID");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("RealEstate.EntityLayer.Concrete.Contact", b =>
