@@ -35,7 +35,7 @@ namespace RealEstate.PresentationLayer.Controllers
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
             var roles = _roleManager.Roles.ToList();
-
+            TempData["userid"] = user.Id;
 
 
             var userRoles = await _userManager.GetRolesAsync(user);
@@ -50,5 +50,27 @@ namespace RealEstate.PresentationLayer.Controllers
             }
             return View(models);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> model)
+        {
+            var userid = (int)TempData["userid"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userid);
+            foreach (var item in model)
+            {
+                if (item.Exists)
+                {
+                    await _userManager.AddToRoleAsync(user, item.Name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.Name);
+                }
+            }
+            return RedirectToAction("UserList");
+        }
+
+
     }
 }
